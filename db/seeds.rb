@@ -4,6 +4,7 @@ quote_chars = %w(" | ~ ^ & *)
 puts 'Seeding DB...'
 Recipe.destroy_all
 Ingredient.destroy_all
+RecipeIngredient.destroy_all
 
 puts 'Creating recipes...'
 CSV.foreach(Rails.root.join('lib/seed_csv/db_recipes.csv'), headers: true, liberal_parsing: true) do |row|
@@ -29,17 +30,6 @@ CSV.foreach(Rails.root.join('lib/seed_csv/db_ingredients.csv'), headers: true, l
     quantity: row['quantity']
   })
 end
-
-# puts 'Creating xref recipe_ingredients...'
-# CSV.foreach(Rails.root.join('lib/seed_csv/db_ingredients.csv'), headers: true, liberal_parsing: true) do |row|
-#     Ingredient.create({
-#       recipe: row['recipe'],
-#       ingredient: row['ingredient'],
-#       quantity: row['quantity'],
-#       unit: row['unit'],
-#     })
-# end
-
 
 # puts 'Creating ingredient swap...'
 # CSV.foreach(Rails.root.join('lib/seed_csv/db_ingredients_swaps.csv'), headers: true, liberal_parsing: true) do |row|
