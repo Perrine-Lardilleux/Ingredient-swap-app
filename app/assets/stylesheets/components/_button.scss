@@ -1,0 +1,13 @@
+#button-back {
+  color: white;
+  text-decoration: none;
+  background-color: #FAA613;
+  padding: 10px 10px;
+  border-radius: 25px;
+  opacity: 0.6;
+
+  &:hover {
+    color: white;
+    opacity: 1;
+  }
+}

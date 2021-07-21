@@ -1,0 +1,5 @@
+recipe,ingredient,alternative_ingredient,alternative_quantity,alternative_unit
+"Spaghetti Carbonara", "Pancetta", "Guanciale" , "220", "g"
+"Spaghetti Carbonara", "Pancetta", "Bacon" , "180", "g"
+"Spaghetti Carbonara", "Pecorino Cheese", "Parmesan Cheese" , "50", "g"
+"Chocolate Kissed Strawberries", "Strawberry", "Banana" , "4", "sliced"

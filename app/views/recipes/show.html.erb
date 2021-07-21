@@ -1,0 +1,9 @@
+<div class="container text-center ml-3">
+  <%= @recipe.photo %>
+  <h1><%= @recipe.name %></h1>
+  <h4><%= @recipe.prep_time %></h4>
+
+  <div id="button-back">
+    <%= link_to "Back to recipes", recipes_path %>
+  </div>
+</div>
