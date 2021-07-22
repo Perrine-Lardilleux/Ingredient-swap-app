@@ -1,7 +1,7 @@
 #button-back {
   color: black;
   text-decoration: none;
-  background-color: #FAA613;
+  background-color: #F86464;
   padding: 10px 10px;
   border-radius: 8px;
   border: solid 1px black;
@@ -10,6 +10,16 @@
   &:hover {
     color: white;
     opacity: 1;
+    text-decoration: none;
+  }
+}
+
+a {
+  color: white;
+  text-decoration: none;
+  width: 470px;
+  &:hover {
+    color: white;
     text-decoration: none;
   }
 }

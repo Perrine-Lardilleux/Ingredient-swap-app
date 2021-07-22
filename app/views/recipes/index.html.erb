@@ -1,8 +1,10 @@
 <div class="container">
-  <h1>Recipes</h1>
-  <% @recipes.each do |recipe| %>
-    <li>
-      <%= link_to recipe.name, recipe_path(recipe)%>
-    </li>
-  <% end %>
+  <div class="recipe">
+    <h1>Recipes</h1>
+    <% @recipes.each do |recipe| %>
+      <li>
+        <p class="card d-flex align-items-center"><%= link_to recipe.name, recipe_path(recipe)%></p>
+      </li>
+    <% end %>
+  </div>
 </div>

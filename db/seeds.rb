@@ -12,7 +12,7 @@ CSV.foreach(Rails.root.join('lib/seed_csv/db_recipes.csv'), headers: true, :quot
     Recipe.create({
       name: row['name'],
       prep_time: row['prep_time'],
-      photo: row['photo']
+      photo_url: row['photo']
     })
 end
 
@@ -23,6 +23,7 @@ CSV.foreach(Rails.root.join('lib/seed_csv/db_ingredients.csv'), headers: true, :
     })
 end
 
+puts 'Creating xref...'
 CSV.foreach(Rails.root.join('lib/seed_csv/db_ingredients.csv'), headers: true, :quote_char => "\x00") do |row|
   RecipeIngredient.create({
     recipe_id: Recipe.find_by(name: row['recipe']).id,
@@ -32,15 +33,15 @@ CSV.foreach(Rails.root.join('lib/seed_csv/db_ingredients.csv'), headers: true, :
   })
 end
 
-# puts 'Creating ingredient swap...'
-# CSV.foreach(Rails.root.join('lib/seed_csv/db_ingredients_swaps.csv'), headers: true, liberal_parsing: true) do |row|
-#     IngredientSwap.create({
-#       recipe: row['recipe'],
-#       ingredient: row['ingredient'],
-#       alternative_ingredient: row['alternative_ingredient'],
-#       alternative_quantity: row['alternative_quantity'],
-#       alternative_unit: row['alternative_unit']
-#     })
-# end
+puts 'Creating ingredient swap...'
+CSV.foreach(Rails.root.join('lib/seed_csv/db_ingredients_swaps.csv'), headers: true, :quote_char => "\x00") do |row|
+  IngredientSwap.create({
+    recipe_id: Recipe.find_by(name: row['recipe']).id,
+    ingredient_id: Ingredient.find_by(name: row['name']).id,
+    alternative_ingredient: row['alternative_ingredient'],
+    alternative_quantity: row['alternative_quantity'],
+    alternative_unit: row['alternative_unit']
+  })
+end
 
 puts 'Finished...'

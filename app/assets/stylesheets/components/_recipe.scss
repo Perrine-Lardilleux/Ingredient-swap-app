@@ -1,0 +1,15 @@
+li {
+  list-style-type: none;
+}
+
+.card {
+  padding-left: 10px;
+  height: 70px;
+  background-color: #F86464;
+  opacity: 0.4;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  margin: 20px 10px;
+  border-radius: 5px;
+  flex-direction: row;
+  list-style-type: none;
+}

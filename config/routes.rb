@@ -1,9 +1,18 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: 'recipes#index'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  resources :recipes, only: [:show], as: :recipe do
-    resources :recipe_ingredients
+
+  devise_scope :user do
+    authenticated :user do
+      root to: 'recipes#index', as: :authenticated_root
+
+      resources :recipes, only: [:show], as: :recipe do
+        resources :recipe_ingredients
+      end
+    end
+
+    unauthenticated do
+      root 'devise/sessions#new', as: :unauthenticated_root
+    end
   end
   # get 'recipes/:id', to: 'recipes#show', as: :recipe
 end

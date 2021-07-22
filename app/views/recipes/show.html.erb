@@ -1,15 +1,16 @@
 <div class="container text-center">
   <div class="content-with-picture">
     <div class="photo">
-      <%= @recipe.photo %>
+      <%#= image_tag(@recipe.photo_url)%>
+      <img src= <%= @recipe.photo_url %>, width="470", height="250"></img>
     </div>
     <div class="content">
       <div class="title mb-4">
         <h1><%= @recipe.name %></h1>
       </div>
       <div class="properties">
-        <img src="app/assets/images/time.svg" class="my-classes" />
-        <%= @recipe.prep_time %>
+        <i class="fas fa-clock"></i>
+        <%=@recipe.prep_time %>
       </div>
       <div class="ingredients ml-5">
         <div class="row mb-2">
@@ -28,8 +29,8 @@
         </div>
       </div>
     </div>
-    <div id="button-back">
-      <%= link_to "Back to recipes", root_path %>
-    </div>
+  </div>
+  <div id="button-back">
+    <%= link_to "Back to recipes", authenticated_root_path %>
   </div>
 </div>
