@@ -2,12 +2,13 @@ require 'csv'
 quote_chars = %w(" | ~ ^ & *)
 
 puts 'Seeding DB...'
+RecipeIngredient.destroy_all
 Recipe.destroy_all
 Ingredient.destroy_all
-RecipeIngredient.destroy_all
+
 
 puts 'Creating recipes...'
-CSV.foreach(Rails.root.join('lib/seed_csv/db_recipes.csv'), headers: true, liberal_parsing: true) do |row|
+CSV.foreach(Rails.root.join('lib/seed_csv/db_recipes.csv'), headers: true, :quote_char => "\x00") do |row|
     Recipe.create({
       name: row['name'],
       prep_time: row['prep_time'],
@@ -16,13 +17,13 @@ CSV.foreach(Rails.root.join('lib/seed_csv/db_recipes.csv'), headers: true, liber
 end
 
 puts 'Creating ingredients...'
-CSV.foreach(Rails.root.join('lib/seed_csv/db_ingredients.csv'), headers: true, liberal_parsing: true) do |row|
+CSV.foreach(Rails.root.join('lib/seed_csv/db_ingredients.csv'), headers: true, :quote_char => "\x00") do |row|
     Ingredient.create({
       name: row['name']
     })
 end
 
-CSV.foreach(Rails.root.join('lib/seed_csv/db_ingredients.csv'), headers: true, liberal_parsing: true) do |row|
+CSV.foreach(Rails.root.join('lib/seed_csv/db_ingredients.csv'), headers: true, :quote_char => "\x00") do |row|
   RecipeIngredient.create({
     recipe_id: Recipe.find_by(name: row['recipe']).id,
     ingredient_id: Ingredient.find_by(name: row['name']).id,

@@ -1,15 +1,35 @@
-<div class="container text-center ml-3">
-  <%= @recipe.photo %>
-  <h1><%= @recipe.name %></h1>
-  <h4><%= @recipe.prep_time %></h4>
-
-  <h4>Ingredients</h4>
-  <% @recipe.recipe_ingredients.each do |recipe_ingredient| %>
-    <br>
-      <%= recipe_ingredient.ingredient.name %>
-  <% end %>
-
-  <div id="button-back">
-    <%= link_to "Back to recipes", root_path %>
+<div class="container text-center">
+  <div class="content-with-picture">
+    <div class="photo">
+      <%= @recipe.photo %>
+    </div>
+    <div class="content">
+      <div class="title mb-4">
+        <h1><%= @recipe.name %></h1>
+      </div>
+      <div class="properties">
+        <img src="app/assets/images/time.svg" class="my-classes" />
+        <%= @recipe.prep_time %>
+      </div>
+      <div class="ingredients ml-5">
+        <div class="row mb-2">
+          <h4>Ingredients</h4>
+        </div>
+        <div class="row">
+          <% @recipe.recipe_ingredients.each do |recipe_ingredient| %>
+            <br>
+              <div class="col-3 text-right">
+                <p><%= recipe_ingredient.quantity %> <%= recipe_ingredient.unit %></p>
+              </div>
+              <div class="col-9 text-left">
+                <p><%= recipe_ingredient.ingredient.name %></p>
+              </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div id="button-back">
+      <%= link_to "Back to recipes", root_path %>
+    </div>
   </div>
 </div>
